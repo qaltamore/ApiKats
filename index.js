@@ -1,8 +1,10 @@
 const express = require('express');
+const bodyParser = require('body-parser')
 const app = express();
 const path = require('path');
 const port = process.env.PORT || 2999;
 
+app.use(bodyParser.json())
 app.use(function (req, res, next) {
     res.header('Access-Control-Allow-Credentials', true);
     res.header('Access-Control-Allow-Origin', req.headers.origin);
@@ -19,7 +21,7 @@ app.get('/test', function(req, res) {
 //Nouveau message dans le topic :id
 app.post('/testPost', function(req, res) {
     console.log("oui")
-    console.log(req.query)
+    console.log(req.body.testId)
     res.send("Hello : " + req.query.testId)
 });
 
